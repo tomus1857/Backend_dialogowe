@@ -31,8 +31,8 @@ public class UserService {
         Optional<User> userOpt = userRepository.findByEmail(email);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
-            if (password.equals(user.getPassword())) {  // Porównanie hasła w czystej postaci
-                return user;  // Logowanie udane
+            if (password.equals(user.getPassword())) {
+                return user;
             }
         }
         throw new RuntimeException("Błędne dane logowania");

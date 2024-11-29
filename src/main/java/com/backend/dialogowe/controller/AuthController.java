@@ -27,7 +27,6 @@ public class AuthController {
             // Sprawdzenie loginu i hasła
             User loggedInUser = userService.loginUser(user.getEmail(), user.getPassword());
 
-            // Jeśli dane są poprawne, odpowiedź może być np. pozytywna, bez generowania tokenu
             return ResponseEntity.ok("Login successful! Redirecting...");
 
         } catch (Exception e) {
