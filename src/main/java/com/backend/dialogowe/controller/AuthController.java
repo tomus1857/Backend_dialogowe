@@ -22,15 +22,45 @@ public class AuthController {
 
     // Logowanie użytkownika
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<Object> login(@RequestBody User user) {
         try {
             // Sprawdzenie loginu i hasła
             User loggedInUser = userService.loginUser(user.getEmail(), user.getPassword());
 
-            return ResponseEntity.ok("Login successful! Redirecting...");
+            // Zwrócenie danych użytkownika po udanym logowaniu
+            return ResponseEntity.ok().body(new UserResponse(
+                    loggedInUser.getFirstName(),
+                    loggedInUser.getLastName(),
+                    loggedInUser.getEmail()
+            ));
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Błędne dane logowania");
+        }
+    }
+
+    // Klasa pomocnicza do zwrócenia danych użytkownika
+    public static class UserResponse {
+        private String firstName;
+        private String lastName;
+        private String email;
+
+        public UserResponse(String firstName, String lastName, String email) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+        }
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public String getLastName() {
+            return lastName;
+        }
+
+        public String getEmail() {
+            return email;
         }
     }
 }
