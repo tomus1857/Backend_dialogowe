@@ -1,9 +1,7 @@
 package com.backend.dialogowe.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -17,9 +15,19 @@ public class Note {
     private String content;
     private LocalDate date;  // Dodajemy pole na datę
 
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
     // Gettery i Settery
     public Long getId() {
         return id;
+    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setId(Long id) {

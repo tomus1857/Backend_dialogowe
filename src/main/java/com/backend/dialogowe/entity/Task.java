@@ -1,9 +1,6 @@
 package com.backend.dialogowe.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Task {
@@ -14,12 +11,20 @@ public class Task {
     private String content;
     private String completionDate;
     private String details;
-
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
     // Gettery i settery
     public Long getId() {
         return id;
     }
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
     public void setId(Long id) {
         this.id = id;
     }
