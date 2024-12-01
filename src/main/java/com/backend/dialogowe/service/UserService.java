@@ -22,7 +22,7 @@ public class UserService {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        user.setPassword(password);  // Hasło w czystej postaci
+        user.setPassword(password);
         return userRepository.save(user);
     }
 

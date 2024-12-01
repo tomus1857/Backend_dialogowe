@@ -13,12 +13,12 @@ public class Note {
 
     private String title;
     private String content;
-    private LocalDate date;  // Dodajemy pole na datę
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-    // Gettery i Settery
+
     public Long getId() {
         return id;
     }
